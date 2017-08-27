@@ -20,13 +20,13 @@ var requestHandler = function(request, response) {
   if(path == '/listings') {
     const body = listingData;
     console.log('Here');
-    response.writeHead(200, 'success', {'Content-Type' : 'text/plain'});
+    response.writeHead(200, 'Success', {'Content-Type' : 'text/plain'});
     response.write(body);
     response.end();
   }
   else {
     console.log('Bad Access');
-    const body = 'Bad Gateway Error';
+    const body = 'Bad gateway error';
     response.writeHead(404, 'Page Not Found', {'Content-Type' : 'error'});
     response.write(body);
     response.end(); 
