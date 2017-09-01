@@ -9,6 +9,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
      */
     $scope.addListing = function() {};
     $scope.deleteListing = function(index) {};
-    $scope.showDetails = function(index) {};
+    $scope.showDetails = function(index) {
+        console.log(index + " " + $scope.listings[index]);
+        $scope.detailedInfo = $scope.listings[index];
+         console.log($scope.detailedInfo);
+    };
   }
 ]);

@@ -1,65 +1,131 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body ng-app="directoryApp">
-    <div class="container">
-      <div class="row">
-        <h1>UF Directory App</h1>
-      </div>
-      <div class="row" ng-controller="ListingsController">
-        <div class="col-md-6">
-          <div class="input-group" id="searchBar">
-            <!-- 
-
-                Implement a way to filter through listings using the search bar 
-
-              -->
-            <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-          <div class="tableWrapper">
-            <table class="table table-striped table-hover">
-              <tr>
-                <th>Code</th>
-                <th>Building Name</th>
-                <th></th>
-              </tr>
-              <!-- 
-
-                  Fill in the rest of the table:
-                      * populate the rows with the code and name of each listing
-                      * include a way to remove individual listings
-
-                --> 
-            </table>
-          </div>
-          <!-- 
-
-              Write an HTML form that adds new listings to the directory 
-
-            -->
+</head>
+<body ng-app="directoryApp">
+    <div class="content">
+        <div class="row" id="nav-bar">
+            <h1 style="font-size: 3vw; margin: 32px;">UF Directory App</h1>
         </div>
-        <div class="col-md-6">
-          <div class="jumbotron">
-            <h2>Detailed Information</h2>
-            <!-- 
+        <div class="row" style="padding: 32px;" ng-controller="ListingsController">
+            <div class="col-md-6">
+                <div class="input-group" id="searchBar">
+                    <!-- 
 
-              Include a way to display detailed information about an individual listing:
-                   * consider how to use ng-click within the the table to implement this feature
+                    Implement a way to filter through listings using the search bar 
 
-             -->
-          </div>
+                    -->
+                    <span class="input-group-addon" id="sizing-addon1">
+                        <span class="glyphicon glyphicon-search" style="font-size: 1.4vw;"></span>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <div class="tableWrapper">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Mark</th>
+                                <th>Code</th>
+                                <th>Building Name</th>
+                                <th>Trash</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="entry in listings" ng-click="showDetails($index)">
+                            <td>
+                                <span class="glyphicon glyphicon-unchecked"></span>
+                            </td>
+                            <td>
+                                {{entry["code"]}}
+                            </td>
+                            <td>
+                                {{entry["name"]}}
+                            </td>
+                            <td>
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </td>
+                        </tr>  
+                        </tbody>  
+                        <!-- 
+
+                        Fill in the rest of the table:
+                        * populate the rows with the code and name of each listing
+                        * include a way to remove individual listings
+                        --> 
+                    </table>
+                </div>
+                <div class="strip-btn">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </div>
+                <!-- 
+
+                Write an HTML form that adds new listings to the directory 
+
+                -->
+            </div>
+            <div class="col-md-6">
+                    <div class="jumbotron" id="detail-header">
+                            <h2>Detailed Information</h2>
+                    </div>
+                    <div class="detail" style="background-color: white;">
+                        <div class="row">
+                            <div class="col-sm-6" style="color: darkgray;">
+                                <h2>Code:</h2>
+                            </div>
+                            <div class="col-sm-6"> 
+                                <h2>{{detailedInfo["code"]}}</h2>
+                            </div>
+                        </div>
+                        <hr style="margin-left: 10%;">
+                        <div class="row">
+                            <div class="col-sm-6" style="color: darkgray;">
+                                <h2>Building Name:</h2>
+                            </div>
+                            <div class="col-sm-6"> 
+                                <h2>{{detailedInfo["name"]}}</h2>
+                            </div>
+                        </div>
+                        <hr style="margin-left: 10%;">
+                        <div class="row">
+                            <div class="col-sm-6" style="color: darkgray;">
+                                <h2>Coordinates:</h2>
+                            </div>
+                            <div class="col-sm-6"> 
+                                <h2>{{detailedInfo["coordinates"]["latitude"]}} : {{detailedInfo["coordinates"]["longitude"]}}</h2>
+                            </div>
+                        </div>
+                        <hr style="margin-left: 10%;">
+                        <div class="row">
+                            <div class="col-sm-6" style="color: darkgray;">
+                                <h2>Address:</h2>
+                            </div>
+                            <div class="col-sm-6"> 
+                                <h2>{{detailedInfo["address"]}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                
+                  <!-- 
+
+                    Include a way to display detailed information about an individual listing:
+                    * consider how to use ng-click within the the table to implement this feature
+
+                    -->
+            </div>
         </div>
-      </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    
     <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
     <script src="app.js"></script>
     <script src="listingController.js"></script>
     <script src="listingFactory.js"></script>
-  </body>
+</body>
 </html>

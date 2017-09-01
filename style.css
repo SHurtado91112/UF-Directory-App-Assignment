@@ -1,8 +1,114 @@
+body {
+    font-size: 1.6vw;
+    height: 100%;
+    width: 100%;
+}
+
+body h2 {
+    font-size: 1.6vw;
+}
+
+#nav-bar {
+    margin: 0;
+    background-color: orange;
+    color: blue;
+    height: auto;
+}
+
 #searchBar {
-  margin: 15px 10px;
+    margin-bottom: 32px;
+    width: 100%;
+    height: 10%;
+}
+
+#searchBar .glyphicon {
+    margin: 0;
+    padding: 8px;
+    width: fit-content;
+    height: fit-content;
+    color: black;
+}
+
+#sizing-addon1 {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchBar .form-control {
+    height: 100%;
+    width: 90%;
+    font-size: 1.4vw;
+}
+
+
+td {
+/*    padding: 100px !important;*/
+    padding: 32px !important;
+}
+
+th {
+    padding: 32px !important;
+}
+
+td .glyphicon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle !important;
+    padding: 16px !important;
 }
 
 .tableWrapper {
-  max-height: 400px;
-  overflow: auto;
+    height: 1800px;
+    width: 100%;
+    overflow: scroll;
+}
+
+.strip-btn {
+    background-color: blue;
+    position: relative;
+    width: 100%;
+    height: 10%;
+    border-radius: 10px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    margin: 0;
+    padding: 0;
+    width: 100%; 
+    height: 100%;
+    position: absolute;
+    background-color: seashell;
+}
+
+#detail-header {
+    height: 10%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#detail-header h2 {margin: 0;}
+
+.detail {
+    padding: 32px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+/*    white-space: nowrap;*/
+}
+
+.detail h2 {
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
