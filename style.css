@@ -2,6 +2,7 @@ body {
     font-size: 1.6vw;
     height: 100%;
     width: 100%;
+    font-family: 'Open Sans';
 }
 
 body h2 {
@@ -10,10 +11,73 @@ body h2 {
 
 #nav-bar {
     margin: 0;
-    background-color: orange;
-    color: blue;
+    background-color: #428bca;
+    color: #f9f9f9;
     height: auto;
 }
+
+modal {
+    width: 100%;
+    height: 100%;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal-dialog {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal-content {
+    width: 60%;
+    height: fit-content;
+    padding: 32px;
+    border-radius: 10px;
+}
+
+.modal-footer {
+    margin: -32px;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+.modal-content .form-control {
+    height: 100%;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    font-size: 1.6vw;
+}
+
+
+label {
+    margin: 0;
+    padding: 0;
+}
+#latitudeInput {
+    margin-top: 0px;
+}
+
+#longitudeInput, #addressInput {
+    margin-bottom: 64px;
+}
+
+.modal-footer .btn {
+    width:100%;
+    height: 10%;
+    border-radius: 6px;
+    font-size: 1.6vw;
+}
+
 
 #searchBar {
     margin-bottom: 32px;
@@ -21,12 +85,16 @@ body h2 {
     height: 10%;
 }
 
+.glyphicon {
+    color: white;
+}
+
 #searchBar .glyphicon {
     margin: 0;
     padding: 8px;
     width: fit-content;
     height: fit-content;
-    color: black;
+    color: darkslategrey;
 }
 
 #sizing-addon1 {
@@ -51,6 +119,14 @@ td {
 
 th {
     padding: 32px !important;
+    background-color: #428bca;
+    color: #f9f9f9;
+}
+
+.table tfoot tr td {
+    padding: 64px !important;
+    border: 0;
+    background-color: lightgray;
 }
 
 td .glyphicon {
@@ -69,15 +145,20 @@ td .glyphicon {
 }
 
 .strip-btn {
-    background-color: blue;
     position: relative;
     width: 100%;
     height: 10%;
     border-radius: 10px;
     
+    font-size: 1.6vw;
+    
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.btn, .btn-primary{
+    background-color: #428bca;
 }
 
 .content {
@@ -86,7 +167,7 @@ td .glyphicon {
     width: 100%; 
     height: 100%;
     position: absolute;
-    background-color: seashell;
+    background-color: #f9f9f9;
 }
 
 #detail-header {
@@ -111,4 +192,30 @@ td .glyphicon {
 .detail h2 {
     margin-top: 10%;
     margin-bottom: 10%;
+}
+
+.animate-repeat {
+  line-height:30px;
+  list-style:none;
+  box-sizing:border-box;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition:all linear 0.48s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+/*  max-height:0;*/
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+/*  max-height:30px;*/
 }

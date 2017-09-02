@@ -4,14 +4,54 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/>
     <link rel="stylesheet" href="style.css">
 </head>
 <body ng-app="directoryApp">
-    <div class="content">
+    <div class="content" ng-controller="ListingsController">
+        <div class="modal fade" id="modal-add" tabindex="-1" role="dialog" 
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <button type="button" ng-click="clear();" class="close" 
+                           data-dismiss="modal" style="font-size: 1.6vw;">
+                               <span aria-hidden="true">&times;
+                                </span>
+                        </button>
+                        <h2 class="modal-title" id="myModalLabel">
+                            Add Directory
+                        </h2>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="codeInput" placeholder="Code" ng-model="detailedInfo['code']">
+                                <input type="text" class="form-control" id="buildingInput" placeholder="Building Name" ng-model="detailedInfo['name']">
+                                <label for="latitudeInput" style="color: black; font-weight: 600; font-size: 1.4vw;">Coordinates</label>
+                                <input type="text" class="form-control" id="latitudeInput" placeholder="Latitude" ng-model="detailedInfo['coordinates']['latitude']">
+                                <input type="text" class="form-control" id="longitudeInput" placeholder="Longitude" ng-model="detailedInfo['coordinates']['longitude']">
+                                <input type="text" class="form-control" id="addressInput" placeholder="Address" ng-model="detailedInfo['address']">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" ng-click="addListing()" class="btn btn-primary">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row" id="nav-bar">
             <h1 style="font-size: 3vw; margin: 32px;">UF Directory App</h1>
         </div>
-        <div class="row" style="padding: 32px;" ng-controller="ListingsController">
+        <div class="row" style="padding: 32px;">
             <div class="col-md-6">
                 <div class="input-group" id="searchBar">
                     <!-- 
@@ -19,37 +59,47 @@
                     Implement a way to filter through listings using the search bar 
 
                     -->
+
                     <span class="input-group-addon" id="sizing-addon1">
                         <span class="glyphicon glyphicon-search" style="font-size: 1.4vw;"></span>
                     </span>
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="search" class="form-control" ng-model="q" placeholder="Search" aria-label="filter listings">
                 </div>
                 <div class="tableWrapper">
                     <table class="table table-striped table-hover table-bordered">
-                        <thead class="thead-inverse">
+                        <thead class="thead">
                             <tr>
-                                <th>Mark</th>
                                 <th>Code</th>
                                 <th>Building Name</th>
-                                <th>Trash</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="entry in listings" ng-click="showDetails($index)">
-                            <td>
-                                <span class="glyphicon glyphicon-unchecked"></span>
-                            </td>
-                            <td>
-                                {{entry["code"]}}
-                            </td>
-                            <td>
-                                {{entry["name"]}}
-                            </td>
-                            <td>
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </td>
-                        </tr>  
+                            <tr class="animate-repeat" ng-repeat="entry in listings | filter:q as results" ng-click="showDetails($index)">
+                                <td>
+                                    {{entry["code"]}}
+                                </td>
+                                <td>
+                                    {{entry["name"]}}
+                                </td>
+                                <td>
+                                    <span class="glyphicon glyphicon-remove" style="color: #d9534f;" ng-click="deleteListing($index)"></span>
+                                </td>
+                            </tr>  
                         </tbody>  
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    
+                                </td>                 
+                                <td>
+                                    
+                                </td>                 
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        </tfoot>
                         <!-- 
 
                         Fill in the rest of the table:
@@ -58,9 +108,10 @@
                         --> 
                     </table>
                 </div>
-                <div class="strip-btn">
+                
+                <button class="strip-btn btn btn-primary" data-toggle="modal" data-target="#modal-add">
                     <span class="glyphicon glyphicon-plus"></span>
-                </div>
+                </button>
                 <!-- 
 
                 Write an HTML form that adds new listings to the directory 
