@@ -2,7 +2,7 @@ body {
     font-size: 1.6vw;
     height: 100%;
     width: 100%;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Arial';
 }
 
 body h2 {
@@ -45,7 +45,7 @@ modal {
 }
 
 .modal-footer {
-    margin: -32px;
+    margin: 0px;
     padding: 0;
     overflow: hidden;
 }
@@ -53,8 +53,8 @@ modal {
 
 .modal-content .form-control {
     height: 100%;
-    margin-top: 32px;
-    margin-bottom: 32px;
+    margin-top: 16px;
+    margin-bottom: 16px;
     font-size: 1.6vw;
 }
 
@@ -68,7 +68,7 @@ label {
 }
 
 #longitudeInput, #addressInput {
-    margin-bottom: 64px;
+    margin-bottom: 32px;
 }
 
 .modal-footer .btn {
@@ -82,7 +82,7 @@ label {
 #searchBar {
     margin-bottom: 32px;
     width: 100%;
-    height: 10%;
+    height: 64px;
 }
 
 .glyphicon {
@@ -114,17 +114,17 @@ label {
 
 td {
 /*    padding: 100px !important;*/
-    padding: 32px !important;
+    padding: 16px !important;
 }
 
 th {
-    padding: 32px !important;
+    padding: 16px !important;
     background-color: #428bca;
     color: #f9f9f9;
 }
 
 .table tfoot tr td {
-    padding: 64px !important;
+    padding: 16px !important;
     border: 0;
     background-color: lightgray;
 }
@@ -139,7 +139,7 @@ td .glyphicon {
 }
 
 .tableWrapper {
-    height: 1800px;
+    height: 400px;
     width: 100%;
     overflow: scroll;
 }
@@ -147,7 +147,7 @@ td .glyphicon {
 .strip-btn {
     position: relative;
     width: 100%;
-    height: 10%;
+    height: 64px;
     border-radius: 10px;
     
     font-size: 1.6vw;
